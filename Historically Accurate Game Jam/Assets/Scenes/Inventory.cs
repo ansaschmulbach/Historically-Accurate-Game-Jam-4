@@ -43,6 +43,7 @@ public class Inventory
         {
             item.quantity += 1;
         }
+        Debug.Log(items.Count);
         
     }
 

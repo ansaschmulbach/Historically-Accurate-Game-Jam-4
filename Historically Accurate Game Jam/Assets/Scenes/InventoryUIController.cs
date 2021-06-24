@@ -19,7 +19,6 @@ public class InventoryUIController : MonoBehaviour
     private PlayerItemController playerItemC;
     private Inventory inventory;
     private List<GameObject> itemList;
-    private bool open;
 
     #endregion
 
@@ -30,7 +29,7 @@ public class InventoryUIController : MonoBehaviour
         playerItemC = FindObjectOfType<PlayerItemController>();
         inventory = playerItemC.inventory;
         itemList = new List<GameObject>();
-        ClearInventory();
+        FillInventory();
     }
 
     #endregion
@@ -39,6 +38,7 @@ public class InventoryUIController : MonoBehaviour
 
     void FillInventory()
     {
+        itemList = new List<GameObject>();
         for (int i = 0; i < inventory.items.Count; i++)
         {
             Inventory.Item item = inventory.items[i];
@@ -61,23 +61,26 @@ public class InventoryUIController : MonoBehaviour
 
     public void RefreshInventory()
     {
-        if (open)
-        {
-            ClearInventory();
-            FillInventory();   
-        }
+        ClearInventory();
+        FillInventory();
     }
     
     GameObject CreateInventoryItemFromItem(Inventory.Item item, int index)
     {
         GameObject inventoryItem = Instantiate(inventoryItemPrefab, grid.transform);
-        InventoryItem itemScript = inventoryItem.GetComponent<InventoryItem>();
-        itemScript.index = index;
-        itemScript.playerItemC = playerItemC;
-        itemScript.ChangeSprite(item.sprite);
+        InventoryUIItem uiItemScript = inventoryItem.GetComponent<InventoryUIItem>();
+        uiItemScript.index = index;
+        uiItemScript.playerItemC = playerItemC;
+        uiItemScript.ChangeSprite(item.sprite);
         return inventoryItem;
     }
 
+    public InventoryUIItem GetIndex(int index)
+    {
+        Debug.Log(itemList.Count);
+        return itemList[index].GetComponent<InventoryUIItem>();
+    }
+    
     #endregion
     
 

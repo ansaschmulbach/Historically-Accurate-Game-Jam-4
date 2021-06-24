@@ -83,8 +83,8 @@ public class PlayerItemController : MonoBehaviour
     
     public void EquipItem(int index)
     {
+        invUIController.GetIndex(selectedIndex).Deselect();
         selectedIndex = index;
-        Debug.Log(inventory.items[index].name);
     }
 
     #endregion
@@ -125,8 +125,8 @@ public class PlayerItemController : MonoBehaviour
     public void CollectItem(Collectable selectedObj)
     {
         inventory.AddItem(selectedObj);
-        Destroy(selectedObj.gameObject);
         invUIController.RefreshInventory();
+        Destroy(selectedObj.gameObject);
     }
 
     #endregion

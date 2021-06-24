@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryUIItem : MonoBehaviour
 {
 
     #region Inspector Variables
@@ -28,8 +28,13 @@ public class InventoryItem : MonoBehaviour
     //When button is pressed, this is called
     public void Select()
     {
-        Debug.Log("hi");
+        itemImage.color = new Color(0.8f, 0.8f, 0.8f, 1);
         playerItemC.EquipItem(this.index);
+    }
+
+    public void Deselect()
+    {
+        itemImage.color = Color.white;
     }
 
     public void ChangeSprite(Sprite sprite)
