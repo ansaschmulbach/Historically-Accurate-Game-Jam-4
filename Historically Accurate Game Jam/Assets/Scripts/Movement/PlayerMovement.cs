@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 scale;
     private FurnitureManager fm;
     private CinemachineVirtualCamera cVCam;
-    
+
     #endregion
 
     #region Velocity Variables
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     #region Public Variables
 
     [NonSerialized] public Direction facingDirection;
+    [NonSerialized] public bool frozen;
     
     #endregion
 
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         fm = FurnitureManager.instance;
         SetZPos(rb2D.position);
         SceneManager.sceneLoaded += SpawnCharacter;
+        SceneManager.sceneLoaded += (arg0, mode) => frozen = false;
     }
 
     public void SpawnCharacter(Scene scene, LoadSceneMode mode)
@@ -107,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (frozen) return;
         Vector2 velocity = new Vector2(rawVelocity.x * xSpeed * Time.deltaTime, rawVelocity.y * ySpeed * Time.deltaTime);
         facingDirection = DirectionUtils.VectorDirection(lastVelocity);
         //rb2D.MovePosition(rb2D.position + velocity);
@@ -173,6 +176,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 feetCenter()
     {
         return col2D.bounds.center;
+    }
+
+    public void Unfreeze()
+    {
+        frozen = false;
     }
 
     #endregion

@@ -23,6 +23,8 @@ public class GuardController : MonoBehaviour
     private Collider2D col2D;
     private Transform destination;
 
+    private bool frozen;
+
     #endregion
 
     #region Public Variables
@@ -42,6 +44,7 @@ public class GuardController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (frozen) return;
         CheckDestination();
         Vector2 velocity = (Vector2) this.destination.position - rb2D.position;
         Vector3 newPos = Vector2.MoveTowards(rb2D.position, destination.position, speed * Time.deltaTime);
@@ -73,13 +76,15 @@ public class GuardController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            other.GetComponent<PlayerMovement>().frozen = true;
             StartCoroutine(RestartGuardScene());
         }
     }
 
     IEnumerator RestartGuardScene()
     {
-        yield return new WaitForSeconds(1);
+        frozen = true;
+        yield return AudioManager.instance.WaitForPlay("Caught Alarm");
         GameManager.instance.LoadGuardScene();
     }
 }

@@ -23,11 +23,20 @@ public class GameManager : MonoBehaviour
 
     public void LoadGuardScene()
     {
+        if (AudioManager.instance != null)
+        {
+            Debug.Log("hi");
+            AudioManager.instance.Play("Guard Scene");
+        }
         SceneManager.LoadScene("Guard Scene");
     }
 
     public void LoadLyreScene()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("General Theme");
+        }
         SceneManager.LoadScene("Lyre Scene");
     }
     
