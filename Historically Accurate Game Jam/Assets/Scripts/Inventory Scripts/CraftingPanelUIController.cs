@@ -12,10 +12,13 @@ public class CraftingPanelUIController : MonoBehaviour
     private List<Inventory.Item> itemsBeingHeld;
     private CraftingRecipes craftingRecipes;
     private InventoryUIController inventoryUIController;
+    private PlayerCrafter playerCrafter;
 
     private void Awake()
     {
-        playerItemController = GameObject.FindWithTag("Player").GetComponent<PlayerItemController>();
+        GameObject player = GameObject.FindWithTag("Player");
+        playerItemController = player.GetComponent<PlayerItemController>();
+        playerCrafter = player.GetComponent<PlayerCrafter>();
         craftingRecipes = FindObjectOfType<CraftingRecipes>();
         inventoryUIController = FindObjectOfType<InventoryUIController>();
         itemsBeingHeld = new List<Inventory.Item>();
@@ -48,7 +51,8 @@ public class CraftingPanelUIController : MonoBehaviour
 
     public void Craft()
     {
-        Collectable col = craftingRecipes.recipeOutput(itemsBeingHeld);
+        CraftingRecipes.Recipe recipe = craftingRecipes.RecipeOutput(itemsBeingHeld);
+        Collectable col = recipe.result;
         if (col == null) return;
         IngredientUIObject[] ingredientContainers = GetComponentsInChildren<IngredientUIObject>();
         foreach (IngredientUIObject ingredientContainer in ingredientContainers)
@@ -67,6 +71,15 @@ public class CraftingPanelUIController : MonoBehaviour
         playerItemController.selectedIndex = 0;
         inventoryUIController.RefreshInventory();
         outputContainer.SetItemBeingHeld(added);
+        playerCrafter.frozen = true;
+        StartCoroutine(PlaySoundThenLoadScene("Crafting", recipe.nextSceneName));
     }
+    
+    public IEnumerator PlaySoundThenLoadScene(string soundName, string name)
+    {
+        yield return AudioManager.instance.WaitForPlay(soundName);
+        GameManager.instance.LoadScene(name);
+    }
+
 
 }

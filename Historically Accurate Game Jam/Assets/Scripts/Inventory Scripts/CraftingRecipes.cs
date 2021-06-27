@@ -13,8 +13,9 @@ public class CraftingRecipes : MonoBehaviour
     {
         [SerializeField] private List<Collectable> recipeCollectables;
         [SerializeField] public Collectable result;
+        [SerializeField] public string nextSceneName;
         [NonSerialized] private List<Inventory.Item> recipeItems;
-        
+
         public void InstantiateRecipe() {
             Debug.Log("hello");
             recipeItems = new List<Inventory.Item>();
@@ -51,13 +52,13 @@ public class CraftingRecipes : MonoBehaviour
         }
     }
 
-    public Collectable recipeOutput(List<Inventory.Item> items)
+    public Recipe RecipeOutput(List<Inventory.Item> items)
     {
         foreach (Recipe r in craftingRecipes)
         {
             if (r.MatchesItemList(items))
             {
-                return r.result;
+                return r;
             }
         }
         return null;

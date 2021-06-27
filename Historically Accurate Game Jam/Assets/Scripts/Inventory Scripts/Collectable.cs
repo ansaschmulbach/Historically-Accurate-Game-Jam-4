@@ -36,7 +36,7 @@ public class Collectable : MonoBehaviour
           playerItemController = FindObjectOfType<PlayerItemController>();
           spriteRenderer = GetComponent<SpriteRenderer>();
           address = GetAddress();
-          inventorySprite = inventorySprite == null ? this.GetComponent<SpriteRenderer>().sprite : inventorySprite;
+          GetInventorySprite();
           itemName = String.IsNullOrEmpty(itemName) ? this.gameObject.name : itemName;
      }
 

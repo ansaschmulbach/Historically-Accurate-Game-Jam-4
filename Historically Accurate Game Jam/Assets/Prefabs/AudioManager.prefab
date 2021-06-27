@@ -48,11 +48,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d0002bf8c3ff1452483657b6c6e1220e, type: 3}
     volume: 1
     loop: 1
+    canOverlap: 0
   - name: General Theme
     clip: {fileID: 8300000, guid: c025eca90dbaf488db6dc466d677f188, type: 3}
     volume: 1
     loop: 1
+    canOverlap: 0
   - name: Caught Alarm
     clip: {fileID: 8300000, guid: 5c29e53b333fb413ead65e465e7429c1, type: 3}
     volume: 1
-    loop: 1
+    loop: 0
+    canOverlap: 0
+  - name: Crafting
+    clip: {fileID: 8300000, guid: 869eb90ed8b5c49378f74df6f94e1f1a, type: 3}
+    volume: 1
+    loop: 0
+    canOverlap: 0

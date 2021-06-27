@@ -39,5 +39,27 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.LoadScene("Lyre Scene");
     }
+
+    public IEnumerator WaitThenLoadScene(float seconds, string name)
+    {
+        yield return new WaitForSeconds(seconds);
+        LoadScene(name);
+    }
+
+    public void LoadScene(string name)
+    {
+        switch (name)
+        {
+            case "Guard Scene":
+                LoadGuardScene();
+                break;
+            case "Lyre Scene":
+                LoadLyreScene();
+                break;
+            default:
+                Debug.LogWarning("no scene named " + name);
+                break;
+        }
+    }
     
 }
