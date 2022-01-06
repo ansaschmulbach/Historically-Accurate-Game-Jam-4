@@ -7,8 +7,7 @@ public class InventoryUIController : MonoBehaviour
 {
 
     #region Inspector Variables
-
-    [SerializeField] private Image spacer;
+    
     [SerializeField] private Image grid;
     [SerializeField] private GameObject inventoryItemPrefab;
 

@@ -17,13 +17,13 @@ public class PlayerScriptManager : MonoBehaviour
 
     void TogglePlayerCrafter(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.name == "Lyre Scene")
+        if (scene.name.Equals("Lyre Scene") || scene.name.Equals("Sandals"))
         {
-            playerCrafter.enabled = true;
+            playerCrafter.frozen = false;
         }
         else if (playerCrafter != null)
         {
-            playerCrafter.enabled = false;
+            playerCrafter.frozen = true;
         }
     }
     

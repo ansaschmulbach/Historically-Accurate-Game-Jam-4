@@ -64,6 +64,15 @@ public class AudioManager : MonoBehaviour
         if (!s.canOverlap && s.source.isPlaying) return;
         s.source.Play();
     }
+    
+    public void StopAll()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+    }
+
 
     public IEnumerator WaitForPlay(string name)
     {

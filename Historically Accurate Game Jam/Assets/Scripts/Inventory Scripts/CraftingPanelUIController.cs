@@ -52,6 +52,7 @@ public class CraftingPanelUIController : MonoBehaviour
     public void Craft()
     {
         CraftingRecipes.Recipe recipe = craftingRecipes.RecipeOutput(itemsBeingHeld);
+        if (recipe == null) return;
         Collectable col = recipe.result;
         if (col == null) return;
         IngredientUIObject[] ingredientContainers = GetComponentsInChildren<IngredientUIObject>();

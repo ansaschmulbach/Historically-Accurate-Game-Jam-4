@@ -56,11 +56,16 @@ MonoBehaviour:
     canOverlap: 0
   - name: Caught Alarm
     clip: {fileID: 8300000, guid: 5c29e53b333fb413ead65e465e7429c1, type: 3}
-    volume: 1
+    volume: 0.32
     loop: 0
     canOverlap: 0
   - name: Crafting
     clip: {fileID: 8300000, guid: 869eb90ed8b5c49378f74df6f94e1f1a, type: 3}
+    volume: 1
+    loop: 0
+    canOverlap: 0
+  - name: Cows
+    clip: {fileID: 8300000, guid: 7c42b10cc0a2f4499a3ec94d4ea08872, type: 3}
     volume: 1
     loop: 0
     canOverlap: 0

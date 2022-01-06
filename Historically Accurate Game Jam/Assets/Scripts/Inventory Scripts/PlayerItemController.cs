@@ -44,7 +44,7 @@ public class PlayerItemController : MonoBehaviour
     private void Start()
     {
         invUIController = FindObjectOfType<InventoryUIController>();
-        movementScript = FindObjectOfType<PlayerMovement>();
+        movementScript = GetComponent<PlayerMovement>();
     }
 
 

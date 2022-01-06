@@ -25,21 +25,55 @@ public class GameManager : MonoBehaviour
     {
         if (AudioManager.instance != null)
         {
-            Debug.Log("hi");
+            AudioManager.instance.StopAll();
             AudioManager.instance.Play("Guard Scene");
         }
         SceneManager.LoadScene("Guard Scene");
+    }
+
+    public void LoadLyreCutscene()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.StopAll();
+            AudioManager.instance.Play("General Theme");
+        }
+
+        SceneManager.LoadScene("Lyre Cutscene");
     }
 
     public void LoadLyreScene()
     {
         if (AudioManager.instance != null)
         {
+            AudioManager.instance.StopAll();
             AudioManager.instance.Play("General Theme");
         }
         SceneManager.LoadScene("Lyre Scene");
     }
 
+    public void LoadDialogueScene()
+    {
+        SceneManager.LoadScene("Dialogue Scene");
+    }
+
+    public void LoadSandalsScene()
+    {
+        SceneManager.LoadScene("Sandals");
+    }
+
+    public void LoadGuardCutscene()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.StopAll();
+            AudioManager.instance.Play("Cows");
+        }
+
+        SceneManager.LoadScene("Guard Cutscene");
+
+    }
+    
     public IEnumerator WaitThenLoadScene(float seconds, string name)
     {
         yield return new WaitForSeconds(seconds);
@@ -55,6 +89,12 @@ public class GameManager : MonoBehaviour
                 break;
             case "Lyre Scene":
                 LoadLyreScene();
+                break;
+            case "Dialogue Scene":
+                LoadDialogueScene();
+                break;
+            case "Guard Cutscene":
+                LoadGuardCutscene();
                 break;
             default:
                 Debug.LogWarning("no scene named " + name);

@@ -17,7 +17,6 @@ public class CraftingRecipes : MonoBehaviour
         [NonSerialized] private List<Inventory.Item> recipeItems;
 
         public void InstantiateRecipe() {
-            Debug.Log("hello");
             recipeItems = new List<Inventory.Item>();
             foreach (Collectable c in recipeCollectables)
             {

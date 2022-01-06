@@ -13,10 +13,9 @@ public class PlayerCrafter : MonoBehaviour
     void Start()
     {
         craftingUIController = FindObjectOfType<CraftingPanelUIController>();
-        craftingPanelUI = craftingUIController.GetComponent<RectTransform>();
         craftingEnabled = false;
+        craftingPanelUI = craftingUIController.GetComponent<RectTransform>();
         craftingPanelUI.gameObject.SetActive(craftingEnabled);
-        SceneManager.sceneLoaded += (arg0, mode) => frozen = false;
     }
 
     // Update is called once per frame
